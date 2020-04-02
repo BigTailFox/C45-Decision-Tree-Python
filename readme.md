@@ -45,3 +45,4 @@ In the example main.py, I used ```pandas``` and ```sklearn``` to split data into
 There is an example on iris data set. You can check it in main.py.
 ## Roadmap
 - Visualise the decision tree.
+- pruning algorithm.
