@@ -1,5 +1,6 @@
 # coding=utf-8
 
+from datetime import datetime
 import c45
 from c45 import Node
 from c45 import DecisionTree
@@ -16,8 +17,9 @@ TESTING_SET = "iris_data_set/iris_te.csv"
 # split dataset into training set and testing set.
 data_set = pd.read_csv(DATA_SET)
 data_set.describe()
+now = int(datetime.now().strftime("%H%M%S"))
 training_set, testing_set = skms.train_test_split(
-    data_set, train_size=0.7, random_state=55)
+    data_set, train_size=0.8, random_state=now)
 training_set.to_csv(TRAINING_SET, index=False)
 testing_set.to_csv(TESTING_SET, index=False)
 
@@ -47,7 +49,7 @@ if __name__ == "__main__":
     # min gain ratio should every splitting get,
     # min number of items supporting splitting,
     # max tree depth, considering root node.
-    tree.set_super_parameters(0, 20, 4)
+    tree.set_super_parameters(0, 8, 6)
     # train.
     tree.train()
     print("error rate on trainning set: ",
