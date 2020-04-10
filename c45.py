@@ -12,7 +12,7 @@ import itertools
 
 class Node(object):
     """
-    c4.5 decision tree's node class.
+    decision tree's node class.
     """
 
     def __init__(self, item=None, left=None, right=None):
@@ -175,13 +175,13 @@ class DecisionTree(object):
             if node.feature == None:
                 leaf_res = {v: k for k, v in node.categories.items()}
                 node.label = leaf_res[max(leaf_res.keys())]
-                print("stop: no gain")
+                # print("stop: no gain")
             else:
                 node.childs.clear()
                 node.split(node.metric_function)
-                print("finally split by:", node.feature)
-                for child in node.childs.values():
-                    print("child: ", child.categories)
+                # print("finally split by:", node.feature)
+                # for child in node.childs.values():
+                #     print("child: ", child.categories)
                 for child in node.childs.values():
                     self.__train(child)
 
@@ -192,15 +192,15 @@ class DecisionTree(object):
         """
         # when number of node's items less than MIN_SPLIT_NUM, stop
         if len(node.items) <= self.MIN_SPLIT_NUM:
-            print("stop: not enough items")
+            # print("stop: not enough items")
             return True
         # when tree's depth reaches MAX_TREE_DEPTH, stop
         elif node.depth >= self.MAX_TREE_DEPTH:
-            print("stop: depth")
+            # print("stop: depth")
             return True
         # when node's items has the same label, stop
         elif len(node.categories) == 1:
-            print("stop: one class")
+            # print("stop: one class")
             return True
         else:
             return False
@@ -272,7 +272,6 @@ class MetricGenerator(object):
         else:
             print("rigister metric functions for feature: ", feature, " firtst.")
 
-# TODO: template
     def nominal_template(self, feature, *values):
         """
         given a nominal feature and it's values set. return a metric list.
